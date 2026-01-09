@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: dotix-backend
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+  - type: static_site
+    name: dotix-frontend
+    plan: free
+    region: oregon
+    buildCommand: cd frontend && npm install && npm run build
+    publishPath: frontend/build
+    envVars: []
